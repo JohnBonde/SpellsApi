@@ -10,9 +10,13 @@ function _drawNewSpells() {
 }
 function _drawActiveSpell() {
   let spell = store.State.activeSpell;
-  document.getElementById('card').innerHTML = spell.Template
+  if (spell._id) {
+    document.getElementById('card').innerHTML = spell.Template
+    return
+  }
+  document.getElementById('card').innerHTML = ""
 }
-function _drawOwnedSpell() {
+function _drawOwnedSpells() {
   let template = ''
   let ownedSpells = store.State.ownedSpells
   ownedSpells.forEach(cur => template += `<li onclick="app.spellsController.selectOwnedSpellsAsync('${cur._id}')">${cur.name}</li>`)
@@ -24,7 +28,7 @@ export default class SpellsController {
   constructor() {
     store.subscribe("spells", _drawNewSpells)
     store.subscribe("activeSpell", _drawActiveSpell)
-    store.subscribe("ownedSpells", _drawOwnedSpell)
+    store.subscribe("ownedSpells", _drawOwnedSpells)
     SpellsService.getNewSpellsAsync()
     this.getMySpellAsync()
   }
@@ -32,7 +36,6 @@ export default class SpellsController {
     try {
       await SpellsService.selectSpellsAsync(id);
     } catch (error) {
-      debugger;
       console.error(error);
 
     }
@@ -41,7 +44,6 @@ export default class SpellsController {
     try {
       await SpellsService.addSpellAsync()
     } catch (error) {
-      debugger;
       console.error(error);
     }
   }
@@ -49,7 +51,20 @@ export default class SpellsController {
     try {
       await SpellsService.getMySpellAsync()
     } catch (error) {
-      debugger;
+      console.error(error);
+    }
+  }
+  async selectOwnedSpellsAsync(id) {
+    try {
+      await SpellsService.selectOwnedSpellsAsync(id)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async castSpellAsync() {
+    try {
+      await SpellsService.castSpellAsync()
+    } catch (error) {
       console.error(error);
     }
   }
