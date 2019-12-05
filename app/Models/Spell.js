@@ -11,12 +11,12 @@ export default class Spell {
 
     get Template() {
         let template = `
-        <div class="card" style="width: 18rem;">
+        <div class="card bg-secondary" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">${this.name}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Level: ${this.level}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Range: ${this.range}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Duration: ${this.duration}</h6>`
+                <h6 class="card-subtitle mb-2">Level: ${this.level}</h6>
+                <h6 class="card-subtitle mb-2">Range: ${this.range}</h6>
+                <h6 class="card-subtitle mb-2">Duration: ${this.duration}</h6>`
         if (this.user) {
             template += `<button type="button" class="btn btn-danger"
                     onclick="app.spellsController.castSpellAsync()">Cast</button>`

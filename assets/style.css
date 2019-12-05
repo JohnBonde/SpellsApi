@@ -1,0 +1,28 @@
+body {
+  background-color: black;
+  color: whitesmoke;
+  font-family: 'Cinzel Decorative', cursive;
+}
+#new-spells {
+  height: 85vh;
+  overflow: auto;
+  border-style: ridge;
+  border-color: darkblue;
+  border-radius: 10px;
+}
+#my-spells {
+  height: 85vh;
+  overflow: auto;
+  border-style: ridge;
+  border-color: darkred;
+  border-radius: 10px;
+}
+#card {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 3em;
+}
+::-webkit-scrollbar {
+  display: none;
+}
